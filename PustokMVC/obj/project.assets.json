@@ -10692,11 +10692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Birinci Novbe\\Desktop\\PustokMVC\\PustokMVC.csproj",
+      "projectUniqueName": "C:\\Users\\Birinci Novbe\\Desktop\\pustok git\\PustokMVC\\PustokMVC.csproj",
       "projectName": "PustokMVC",
-      "projectPath": "C:\\Users\\Birinci Novbe\\Desktop\\PustokMVC\\PustokMVC.csproj",
+      "projectPath": "C:\\Users\\Birinci Novbe\\Desktop\\pustok git\\PustokMVC\\PustokMVC.csproj",
       "packagesPath": "C:\\Users\\Birinci Novbe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Birinci Novbe\\Desktop\\PustokMVC\\obj\\",
+      "outputPath": "C:\\Users\\Birinci Novbe\\Desktop\\pustok git\\PustokMVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Birinci Novbe\\AppData\\Roaming\\NuGet\\NuGet.Config",

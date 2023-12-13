@@ -11,6 +11,8 @@ namespace PustokMVC.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             using PustokDbContext db = new PustokDbContext();
+            //var model = db.HeroSliders.OrderBy(p => p.Id).Take(2);
+            //return View(model);
             return View(await db.HeroSliders.ToListAsync()); //4.4
         }
         public async Task<IActionResult> Create()
