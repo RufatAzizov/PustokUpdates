@@ -5,11 +5,15 @@ using PustokMVC.Contexts;
 namespace PustokMVC.Controllers
 {
     public class HomeController : Controller
-    { 
+    {
+        PustokDbContext _context;
+        public HomeController(PustokDbContext context)
+        {
+            _context = context;
+        }
         public async Task<IActionResult>  Index()
         {
-            using PustokDbContext context = new PustokDbContext();      
-            var sliders = await context.HeroSliders.ToListAsync();
+            var sliders = await _context.HeroSliders.ToListAsync();
             return View(sliders);
         }
     }

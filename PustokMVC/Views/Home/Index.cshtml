@@ -13,6 +13,8 @@ Hero Area
                             "slidesToShow": 1,
                             "dots":true
                             }'>
+        @await Component.InvokeAsync("HeroSlider")
+
         @foreach (var slider in Model)
         {
             <div class="single-slide bg-shade-whisper  ">

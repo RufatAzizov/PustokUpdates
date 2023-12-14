@@ -8,12 +8,17 @@ namespace PustokMVC.Areas.Admin.Controllers
     [Area("Admin")]
     public class SliderController : Controller
     {
+        PustokDbContext _context;
+        public SliderController(PustokDbContext context)
+        {
+            _context = context;
+        }
         public async Task<IActionResult> Index()
         {
-            using PustokDbContext db = new PustokDbContext();
+   
             //var model = db.HeroSliders.OrderBy(p => p.Id).Take(2);
             //return View(model);
-            return View(await db.HeroSliders.ToListAsync()); //4.4
+            return View(await _context.HeroSliders.ToListAsync()); //4.4
         }
         public async Task<IActionResult> Create()
         {
@@ -27,9 +32,8 @@ namespace PustokMVC.Areas.Admin.Controllers
                 
                 return View(slider);
             }
-            using PustokDbContext db = new PustokDbContext();
-            await db.HeroSliders.AddAsync(slider);
-            await db.SaveChangesAsync();
+            await _context.HeroSliders.AddAsync(slider);
+            await _context.SaveChangesAsync();
             return View();
         }
     }
