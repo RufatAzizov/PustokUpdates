@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿﻿@using PustokMVC.Helpers
+@using PustokMVC.Models
+@inject LayoutService service;
+@{
+    Settings setting = await service.GetSettingsAsync();
+}
+<!DOCTYPE html>
 <html lang="zxx">
 
 

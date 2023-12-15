@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PustokMVC.ViewModels.ProductVM;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PustokMVC.Models
@@ -22,6 +23,9 @@ namespace PustokMVC.Models
         public int InStock { get; set; }
         public int CategoryId { get; set; }
         public Categories Category { get; set; }
+        public ushort Quantity { get; set; }
+        public string ImageUrl { get; set; }
+        public ICollection<ProductImages> ProductImages { get; set; }
 
 
 

@@ -11,6 +11,14 @@ namespace PustokMVC.Controllers
         {
             _context = context;
         }
+        public string GetCookie(string key)
+        {
+            return HttpContext.Request.Cookies[key] ?? "";
+        }
+        public IActionResult GetBasket()
+        {
+            return ViewComponent("Basket");
+        }
         public async Task<IActionResult>  Index()
         {
             var sliders = await _context.HeroSliders.ToListAsync();

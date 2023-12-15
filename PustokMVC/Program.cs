@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using PustokMVC.Contexts;
+using PustokMVC.Helpers;
 using PustokMVC.Models;
 using PustokMVC.ViewComponents;
 
@@ -24,8 +26,14 @@ namespace PustokMVC
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
+
+            app.UseHttpsRedirection();
+            app.UseSession();
             app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "Admin",
@@ -34,7 +42,8 @@ namespace PustokMVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            
+
+            PathConstants.RootPath = builder.Environment.WebRootPath;
 
             app.Run();
         }
