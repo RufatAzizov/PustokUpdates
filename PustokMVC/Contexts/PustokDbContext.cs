@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PustokMVC.Models;
-using PustokMVC.ViewModels.ProductVM;
 
 namespace PustokMVC.Contexts
 {
@@ -14,10 +13,26 @@ namespace PustokMVC.Contexts
         public DbSet<ProductImages> ProductImages { get; set; }
         public DbSet<Settings> Settings { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-U9AO5GJ\\SQLEXPRESS;Database=PustokDB;Trusted_Connection=True");
-            base.OnConfiguring(optionsBuilder);
+            modelBuilder.Entity<Settings>()
+                .HasData(new Settings
+                {
+                    Address = "Baku, ",
+                    Email = "cefer228@gmail.com",
+                    Number1 = "+994558458202",
+                    Number2 = "+994503729894",
+                    Logo = "",
+                    //AccountIcon = "<i class='fa fa-user-o'></i>",
+                    Id = 1
+                });
+            base.OnModelCreating(modelBuilder);
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=DESKTOP-U9AO5GJ\\SQLEXPRESS;Database=PustokDB;Trusted_Connection=True");
+        //    base.OnConfiguring(optionsBuilder);
+        //}
     }
 }

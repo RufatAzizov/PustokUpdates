@@ -1,9 +1,17 @@
 ﻿@using PustokMVC.Models;
 @model List<HeroSlider>
+@{
+    ViewBag.Title = "Title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 @section styles{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 }
 @section scripts{
+    
+        
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $("#featured").on("click", "#prod-pag a", function (ev) {
@@ -48,44 +56,8 @@
 <!--=================================
 Hero Area
 ===================================== -->
-<section class="hero-area hero-slider-1">
-    <div class="sb-slick-slider" data-slick-setting='{
-                            "autoplay": true,
-                            "fade": true,
-                            "autoplaySpeed": 3000,
-                            "speed": 3000,
-                            "slidesToShow": 1,
-                            "dots":true
-                            }'>
-        @await Component.InvokeAsync("HeroSlider")
+@await Component.InvokeAsync("HeroSlider")
 
-        @foreach (var slider in Model)
-        {
-            <div class="single-slide bg-shade-whisper  ">
-            <div class="container">
-                <div class="home-content text-center text-sm-left position-relative">
-                    <div class="hero-partial-image image-right">
-                        <img src="@slider.ImageURL" alt="">
-                    </div>
-                    <div class="row no-gutters ">
-                        <div class="col-xl-6 col-md-6 col-sm-7">
-                            <div class="home-content-inner content-left-side">
-                                <h1>
-                                    @slider.Title
-                                </h1>
-                                <h2>@slider.Description</h2>
-                                <a href="shop-grid.html" class="btn btn-outlined--primary">
-                                    $@slider.Price - Order Now!
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        }
-    </div>
-</section>
 
 <!--=================================
 Home Features Section

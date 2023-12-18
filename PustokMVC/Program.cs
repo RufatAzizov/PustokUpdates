@@ -13,12 +13,17 @@ namespace PustokMVC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<PustokDbContext>(
-                options =>
-            options.UseSqlServer("Server=DESKTOP-U9AO5GJ\\SQLEXPRESS;Database=PustokDB;Trusted_Connection=True")
-            );
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<PustokDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:MSSql"]);
+            });
+            builder.Services.AddSession();
+            builder.Services.AddScoped<LayoutService>();
+
+
+            // Add services to the container.
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

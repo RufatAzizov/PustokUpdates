@@ -99,6 +99,10 @@ namespace PustokMVC.Migrations
                     b.Property<float>("Discount")
                         .HasColumnType("real");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("InStock")
                         .HasColumnType("int");
 
@@ -107,6 +111,9 @@ namespace PustokMVC.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("ProductCode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("SellPrice")
@@ -124,6 +131,79 @@ namespace PustokMVC.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("PustokMVC.Models.ProductImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Product")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Productid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Productid");
+
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("PustokMVC.Models.Settings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Baku, ",
+                            Email = "cefer228@gmail.com",
+                            Logo = "",
+                            Number1 = "+994558458202",
+                            Number2 = "+994503729894"
+                        });
+                });
+
             modelBuilder.Entity("PustokMVC.Models.Product", b =>
                 {
                     b.HasOne("PustokMVC.Models.Categories", "Category")
@@ -135,9 +215,23 @@ namespace PustokMVC.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("PustokMVC.Models.ProductImages", b =>
+                {
+                    b.HasOne("PustokMVC.Models.Product", null)
+                        .WithMany("ProductImages")
+                        .HasForeignKey("Productid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PustokMVC.Models.Categories", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("PustokMVC.Models.Product", b =>
+                {
+                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }
